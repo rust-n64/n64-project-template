@@ -1,0 +1,22 @@
+[build]
+target = "mips-nintendo64-none.json"
+
+[unstable]
+build-std = ["core", "alloc"]
+
+[target."mips-nintendo64-none"]
+rustflags = ["-Clto", "-Cembed-bitcode"]
+
+# The commented lines below show two examples of how to instruct nust64 to execute additional command after building the ROM file.
+# 
+# When providing commands, nust64 will replace all instances of `>>ROM<<` with the path to the created ROM file.
+# 
+# Always ensure the `--elf` argument exists, and is the LAST argument in the list! Cargo always appends the argument list
+#   with the path to the compiled ELF file which nust64 requires for building the ROM.
+runner = [
+    "nust64",
+    #"--post-exec", "mame n64 -log -verbose -window -switchres -resolution 640x480 -nofilter -cart >>ROM<<",
+    #"--post-exec", "/path/to/ares >>ROM<<",
+    "--ipl3", "YOUR_IPL3.bin",
+    "--elf"
+]
