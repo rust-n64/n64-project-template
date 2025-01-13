@@ -4,11 +4,10 @@
 ## N64 Project Template for Rust
 This repo is intended to be a starting point for developing software for the Nintendo 64 console using Rust.
 
-Only the bare minimum utilities are included at this time. Once higher level support libraries are available, this
-template will be updated to include them. A no_std allocator has been set up already, which should also get replaced
-eventually with an allocator that is better aware of the N64's memory map.
+Only the bare minimum utilities are included at this time. A `no_std` allocator has been set up for you (which should
+ideally be replaced in the future by an allocator that is more aware of the N64's memory map.)
 
-The `n64-pac` crate is also included as a dependency. It doesn't provide full coverage of all registers yet, but
+The `n64-pac` crate is included as a dependency. It doesn't provide full coverage of all registers yet, but
 has enough for the basics. Refer to [the crate's docs](https://docs.rs/n64-pac) for details.
 
 An ISViewer implementation is available, with `print!` and `println!` macros. This allows you to print text to emulators
@@ -24,13 +23,8 @@ cd n64-project-template
 3. Install a cargo runner: `cargo install nust64`
 4. Run `cargo run --release` to compile and build a ROM.
 
-**Please note:** N64 ROMs require a segment of bootcode known as the IPL3. The IPL3 gets hashed by the N64's boot
-sequence, and compared with the CIC on the cartridge. All software compiled to run on the N64 requires some
-variant of the IPL3. Until there is a community-made variant, you will have to source this yourself.
-
-Fortunately, Krom, with help from Zoinkity, [has written their own IPL3 from scratch](https://github.com/PeterLemon/N64/tree/master/BOOTCODE),
-which has the same hash as the 6102 IPL3 variant. Whether you use that or some other code is up to you. Once you have an
-IPL3 binary, open `.cargo/config.toml` and replace `YOUR_IPL3.bin` with the file path to the IPL3 you wish to use.
+This template uses [libdragon's open-source IPL3](https://github.com/DragonMinded/libdragon/tree/unstable/boot) by default.
+You do not need to supply your own.
 
 ## Cargo Runner Configuration
 This project is configured to make use of [nust64](https://github.com/rust-n64/nust64), a program that creates the final

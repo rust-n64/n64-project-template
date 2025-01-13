@@ -17,6 +17,6 @@ runner = [
     "nust64",
     #"--post-exec", "mame n64 -log -verbose -window -switchres -resolution 640x480 -nofilter -cart >>ROM<<",
     #"--post-exec", "/path/to/ares >>ROM<<",
-    "--ipl3", "YOUR_IPL3.bin",
+    "--libdragon", "release",
     "--elf"
 ]
